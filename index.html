@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://gdsasa.oss-cn-shenzhen.aliyuncs.com/bioslsa/1.0.2/bioslsa.css">
+    <style>
+        body,html{height:100%;margin:0}
+        ul{margin:0}
+        li{list-style-type:decimal;font-size:24px}
+        .ul-noe li{margin-top:0;font-size:20px}
+        .list-ul li{font-weight:400}
+        .ul-noe a{transition:all .35s}
+        .ul-noe a:hover{box-shadow:0 3px 0 0 rgba(21,180,151,.8)}
+        .index-form{position:fixed;height:100%;width:max-content;box-shadow:0 0 4px 8px rgba(0,0,0,.02);background-color:#fff;padding-right:8px;padding-left:8px}
+        .index-a{width:50%;margin:0 auto;justify-content:center;background-color:#fff;box-shadow:0 0 16px 16px rgba(1,1,1,.03)}
+        .index-index-index{display:flex}
+        .Text-wiki-list{margin-left:32px}
+        .Text-wiki-list p{margin-left:12px}
+        h1,h2,h3{font-weight:700}
+        .prems{background-color:#000;width:95%;margin:0 auto}
+        .codepre{background-color:#000;color:#fff;font-size:20px;font-family:'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif;line-height:1.5em}
+        .codepre p{color:#fff;overflow-wrap:break-word;white-space:pre-wrap;margin-left:12px}
+        .Text-wiki-list h1::before{line-height:2em;font-size:24px;content:'#'}
+        .Text-wiki-list h2::before{line-height:2em;font-size:20px;content:'*'}
+        .Text-wiki-list h3::before{line-height:2em;font-size:18px;content:'@'}
+    </style>
+    <title>Buserpi - 一些无聊的文档</title>
+</head>
+<body>
+    <div class="index-index-index">
+        <div class="index-form">
+            <ul class="list-ul">
+                <li>
+                    <a href="#JAVA">JAVA版本的如何选择</a>
+                    <ul class="ul-noe">
+                        <li>
+                            <a href="#JAVA-java">Java</a>
+                        </li>
+                        <li>
+                            <a href="#JAVA-openj9">openj9</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#JAVA-JVM">什么是JVM</a>
+                    <ul class="ul-noe">
+                        <li>
+                            <a href="#JAVA-jvm">JVM参数</a>
+                        </li>
+                        <li>
+                            <a href="#JAVA-JVM-G1">G1</a>
+                        </li>
+                        <li>
+                            <a href="#JAVA-JVM-server">开服常用参数</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#Minecraft优化">Minecraft服务器优化</a>
+                    <ul class="ul-noe">
+                        <li>
+                            <a href="#server-properties">properties优化</a>
+                        </li>
+                        <li>
+                            <a href="#Bukkit优化">Bukkit优化</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#服务器优化">服务器优化</a>
+                    <ul class="ul-noe">
+                        <li>Windows</li>
+                        <ul class="ul-noe">
+                            <li>
+                                <a href="#windows-网络吞吐量">网络吞吐量</a>
+                            </li>
+                            <li>
+                                <a href="#windows-磁盘读写">磁盘读写</a>
+                            </li>
+                            <li>
+                                <a href="#windows-卓越性能">卓越性能</a>
+                            </li>
+                        </ul>
+                        <li>Linux</li>
+                        <ul class="ul-noe">
+                            <li>
+                                <a href="#Linux-网络吞吐量">网络吞吐量</a>
+                            </li>
+                            <li>
+                                <a href="#Linux-磁盘读写">磁盘读写</a>
+                            </li>
+                            <li>
+                                <a href="#Linux-BBR">BBR加速</a>
+                            </li>
+                        </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#网络类型">网络类型</a>
+                    <ul class="ul-noe">
+                        <li>
+                            <a href="#网络-NAT">NAT</a>
+                        </li>
+                        <li>
+                            <a href="#网络-公网">公网</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#断定服务器良好">如何断定一个服务器的良好</a>
+                    <ul class="ul-noe">
+                        <li>
+                            <a href="#if-CPU">CPU</a>
+                        </li>
+                        <li>
+                            <a href="#if-硬盘">硬盘</a>
+                        </li>
+                        <li>
+                            <a href="#if-ping">延迟</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#插件推荐" style="text-decoration:line-through;">插件推荐</a>
+                </li>
+            </ul>
+        </div>
+        <div class="index-a">
+            <div class="Text-wiki">
+                <div class="Text-wiki-list">
+                    <h1 id="JAVA">1.JAVA版本如何选择</h1>
+                    <p>这是一个完全能优化的选择，Yes。当你选到适合自己，又不与MOD/插件冲突的Java版本，又低占用，稳定，性能流畅时这很适合做为你发展的一个好方向！</p>
+                    <h2 id="JAVA-java">Java</h2>
+                    <p>当一个适合自己的服务器Java版本时你离下一个优化已经不远了。我们通常选择Java版本是JDK1.8，也是大家通常使用又熟悉的Java8，这个版本是全部开服基本通用的，我之前试过1.16以下最高只能使用Java11开服，而且部分MOD与插件使用Java11出现冲突。我个人比较建议使用Java8。我给你们列一个Java目前流行的版本，方便你们查看。</p>
+                    <p>Java JDK版本列表:</p>
+                    <ul>
+                        <li>
+                            <a target="_" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">JAVA8</a>
+                        </li>
+                        <li>
+                            <a target="_" href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">JAVA11</a>
+                        </li>
+                        <li>
+                            <a target="_" href="https://www.oracle.com/java/technologies/javase-jdk15-downloads.html">JAVA15</a>
+                        </li>
+                    </ul>
+                    <p>您可以为了性能选择Java 11，放弃一些东西达到性能。</p>
+                    <h2 id="JAVA-openj9">openj9</h2>
+                    <p>最棒的一个Java JVM，与其Java8不如openj9，放弃Java8吧，试试看openj9的性能。启动速度减少大约40%，内存大约降低50%，吞吐量容易接近顶峰，当然这是我找的资料里面抽取的，在您的服务器不一定有效果。不过我还是要警告openj9与一些MOD/插件可能存在不兼容现象，不过这是极小的想象，实际服务器使用没有问题。</p>
+                    <p>资料抽取：<a style="color: red;" target="_" href="https://blog.csdn.net/myle69/article/details/96765273">微服务中使用 OpenJ9 JVM 内存占用降60%(相对HotSpot)</a></p>
+                    <p>下载地址:</p>
+                    <ul>
+                        <li>
+                            <a style="color: red;" target="_" href="https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=openj9">OpenJDK</a>
+                        </li>
+                    </ul>
+                    <p>国外网站，可以使用迅雷，IDM来提高下载，不过建议使用迅雷有P2P来辅助加速。</p>
+                </div>
+                <div class="Text-wiki-list">
+                    <h1 id="JAVA-JVM">2.What is JVM?</h1>
+                    <p>一个Java虚拟机平台，不过我们讲的不是虚拟机是JVM参数，针对服务器优化滴。</p>
+                    <h2 id="JAVA-jvm">JVM参数</h2>
+                    <p>JVM调优可以换取更好的性能和更低的延迟，如果你搭配openj9性能可以翻几倍更加降低延迟，这是每个服主都要会的。</p>
+                    <p>哦，不会吧，你还不会JVM参数添加？看看这个列子吧!</p>
+                    <p style="color:teal;">java -Xms1G -Xmx1G -jar 服务器端.jar</p>
+                    <p>记得后缀名，别漏了后缀名！</p>
+                    <p>-Xms与-Xmx,一个最小内存，一个是最大内存，我一般建议同时设置成同一个来提升一些性能，列如 -Xms1G -Xmx1G</p>
+                    <p>下列不进行介绍，JVM参数太多了</p>.<h1>frp配置文件修改与设置 - frpc.ini：</h1>
+                    <p>服务器模式</p>
+                    <pre class="prems"><code class="codepre"><p>-server</p></code></pre>
+                    <p>提高并发</p>
+                    <p>-Xincgc</p>
+                    <p>OOP</p>
+                    <p>-XX:+UseCompressedOops</p>
+                    <p>加快编译</p>
+                    <p>-XX:+AggressiveOpts</p>
+                    <p>...</p>
+                    <p>网站链接:<a style="color: red;" href="https://www.cnblogs.com/langtianya/p/3898760.html">JVM参数</a></p>
+                    <h2 id="JAVA-JVM-G1">G1</h2>
+                    <p style="color: red;">G1是一个GC回收器，由于G1收获垃圾性能太好，G1代替了CMS。什么是垃圾为什么要回收垃圾?</p>
+                    <p>答:这些都是一些变量带来的无用垃圾，比如空变量，变量值为空，无用的类等GC就是回收垃圾，回收一些没用的类，变量来释放资源。(不会吧不会吧这和百科有点像)</p>
+                    <p style="color: red;">G1怎么使用?</p>
+                    <p>答:一个JVM参数 -XX:+UseG1GC</p>
+                    <h2 id="JAVA-JVM-server">开服常用参数</h2>
+                    <p>哇哈哈哈，终于到本尊服主给大家推荐自己用的参数了。</p>
+                    <pre class="prems"><code class="codepre"><p>java.exe -Xms1G -Xmx1G -server -Xincgc -Xss1024k -XX:+UseCompressedOops -XX:+AggressiveOpts -XX:-UseParallelGC -XX:+UseG1GC -XX:+UseThreadPriorities -XX:G1HeapRegionSize=16 -XX:InitiatingHeapOccupancyPercent=45 -XX:MaxGCPauseMillis=200 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=2 -XX:InitiatingHeapOccupancyPercent=50 -XX:+UseFastAccessorMethods -XX:CMSInitiatingOccupancyFraction=70 -XX:-DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:+UseConcMarkSweepGC -jar spigot-1.15.2.jar</p></code></pre>
+                    <p>在这些参数我抽了几个有用的</p>
+                    <pre class="prems"><code class="codepre"><p>-Xms1G -Xmx1G -server -Xincgc -Xss1024k -XX:+UseCompressedOops -XX:+AggressiveOpts -XX:-UseParallelGC -XX:+UseG1GC -XX:G1HeapRegionSize=16 -XX:InitiatingHeapOccupancyPercent=45 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=2 -XX:InitiatingHeapOccupancyPercent=50  -XX:TargetSurvivorRatio=90 -XX:+UseConcMarkSweepGC</p></code></pre>
+                </div>
+                <div class="Text-wiki-list">
+                    <h1 id="Minecraft优化">3.Minecraft服务器优化</h1>
+                    <p>提升TPS的一些修改，可以帮助您在1G跑个12人!</p>
+                    <h2 id="server-properties">properties优化</h2>
+                    <p>你常常看到的server.properties这个文件有一些可以让TPS提升很大的优化，你多久没有动过他啦~</p>
+                    <h3>network-compression-threshold</h3>
+                    <p>你以为，network-compression-threshold（网络封包压缩的阀值）就是默认256？不管CPU好不好，你们下载也会先进入CPU缓存到内存到硬盘，都会有性能占用，我们建议是如下:</p>
+                    <pre class="prems"><code class="codepre"><p>network-compression-threshold = 128</p></code></pre>
+                    <h3>view-distance</h3>
+                    <p>服务器视距，服务器视距比客户视距多出5倍，通常主大厅4，PVP服务器默认或者8，生存服务器可以是4-6，空岛服务器8-12，RPG服务器8-12,这是影响一些生成或者其他</p>
+                    <p>我们建议如下:</p>
+                    
+                    <h2 id="Bukkit优化">Bukkit优化</h2>
+                    <p>这个参数较小，没啥好讲的</p>
+                    <pre class="prems"><code class="codepre"><p>spawn-limits:
+        monsters: 45
+        animals: 5
+        water-animals: 5
+        ambient: 10</p></code></pre>
+                </div>
+                <div class="Text-wiki-list">
+                    <h1 id="服务器优化">4.服务器优化</h1>
+                    <p>不管你是Windows还是Linux，你可能都需要这个，在一个虚拟环境中无论怎么样都需要这个，因为分配的资源你没有优化无法用到最顶。</p>
+                    <h2 id="windows-网络吞吐量">网络吞吐量</h2>
+                    <p>假如:当你搞起了自己的服务器，宽带是1Mbps，你能带动的有4个人，可是带动两个人宽带就过不来了，并发也不怎么强了，这时候是网络吞吐量不够强，越是强的吞吐量，可以达到共并发，低延迟的游戏</p>
+                    <p>如何提升自己的并发:</p>
+                    <h3>1.本地组策略编辑器</h3>
+                    <pre class="prems"><code class="codepre"><p>(Win + R) > 输入gpedit.msc > 计算机配置 > Windows设置 > 基于策略的QoS > 右键这个策略 > 点击高级 QoS 设置 > 打钩你眼前的这个框框 > 选择级别3</p></code></pre>
+                    <a href="./img/QoS.png" target="_" style="text-align: center;">
+                        <img src="./img/QoS.png" alt="">
+                    </a>
+                    <p style="color: red;font-weight: 500;">设置了也不能发挥百分百的宽带，当然你每天看的那个抖音/快手说释放宽带，那个是有一点用处的</p>
+                    <p style="color: red;font-weight: 500;">至于不懂的可以使用百度搜索"如何释放电脑保留宽带"</p>
+                    <p>设置完这个还要一个需要CMD(管理员)：</p>
+                    <pre class="prems"><code class="codepre"><p>netsh int tcp set global autotuninglevel = disabled</p></code></pre>
+                    <p>当然你以为就这?你们的Buserpi是不会让你们忍受普通的TCP的</p>
+                    <p>CMD（管理员）：</p>
+                    <pre class="prems"><code class="codepre"><p>netsh interface tcp set global congestionprovider=ctcp</p><p>netsh int tcp set supplemental template=internet congestionprovider=ctcp</p><p>netsh int tcp set global timestamps=enabled</p></code></pre>
+                    <h2 id="windows-磁盘读写">磁盘读写</h2>
+                    <p>磁盘读写将会影响整个系统性能，如果磁盘读写能力不够，系统可能会卡顿，缓慢等等这些，别以为你的机械硬盘加了傲腾就真的可以傲了，这个是缓存技术。实际体验没有那么爽的。</p>
+                    <h3>1.关闭系统保护</h3>
+                    <a href="./img/xtbh.png">
+                        <img src="./img/xtbh.png" alt="">
+                    </a>
+                    <p>具体没啥用，我们给的是工作站版本，无需备份</p>
+                    <h3>2.磁盘整理计划 - 开启</h3>
+                    <p>别问，问就是服务器给的机械硬盘,整理之后，顺序是不乱可以提升读写</p>
+                    <a href="./img/spzl.png">
+                        <img src="./img/spzl.png" alt="">
+                    </a>
+                    <h3>3.虚拟内存分配</h3>
+                    <p>越大越好，读写会提升</p>
+                    <h3>4.关闭睡眠</h3>
+                    <p>服务器你睡眠有什么用，除非你为其他用户做出贡献</p>
+                    <p>CMD（管理员）：</p>
+                    <pre class="prems"><code class="codepre"><p>powercfg -h off</p></code></pre>
+                    <h2 id="windows-卓越性能">卓业性能(确认无误)</h2>
+                    <p>打开卓业性能可以提升10%的磁盘读写性能与cpu性能，不是很大，有小幅度提升性能，虚拟机里面用户们建议直接开（已帮你们了）</p>
+                    <p>百度：“如何开启卓越性能”,我们是默认开了</p>
+                    <h2 id="Linux-网络吞吐量">Linux-网络吞吐量</h2>
+                    <p>Linux优不优化无所谓，跳过，下一个</p>
+                    <h2 id="Linux-磁盘读写">磁盘读写</h2>
+                    <p>Linux读写速度快,跳过，下一个</p>
+                    <h2 id="Linux-BBR">BBR加速</h2>
+                    <p>添加BBR可以降低一定延迟</p>
+                    <p><a style="color: red;" href="https://www.jianshu.com/p/62c9b9570c05">BBR加速安装</a></p>
+                </div>
+                <div class="Text-wiki-list">
+                    <h1 id="网络类型">5.网络类型</h1>
+                    <p>NAT与公网，BPG,CN2,骨干网这些都是啥，我好蒙啊!</p>
+                    <h2 id="网络-NAT">NAT</h2>
+                    <p>NAT,网络地址转换协议,由于公网缺乏，有人想到了NAT，于是NAT就是一个映射，将你的端口映射到一个公网的端口</p>
+                    <h2 id="网络-公网">公网</h2>
+                    <p>公网，全球分配的一个IP不同于局域网，他共享了服务器的资源，全球都可以访问</p>
+                    <p>CN2，中国电信下一代承载网，精品网络，路线有一般，稳定</p>
+                    <p>163，中国电信的骨干网，此网络负责了90%的电信业务负载</p>
+                    <p>骨干网，用来连接多个区域或地区的高速网络。每个骨干网中至少有一个和其他骨干网进行互联互通的连接点。不同的网络供应商都拥有自己的骨干网，用以连接其位于不同区域的网络。</p>
+                </div>
+                <div class="Text-wiki-list">
+                    <h1 id="断定服务器良好">6.断定服务器良好</h1>
+                    <p>服务器好坏在于CPU，硬盘，网络</p>
+                    <h2 id="if-CPU">CPU</h2>
+                    <p>一颗CPU好坏在于多老，性能如何，可以通过一些跑分，排行榜查看，比如CPU天梯图，CPU-Z分数，如果性能比较差的话，服务器TPS可能会下降</p>
+                    <h2 id="if-硬盘">硬盘</h2>
+                    <p>硬盘，在于读写,性能,缓存。如果你的服务器硬盘是机械硬盘，不会对服务器有影响只会增加读取的延迟，可能玩家会有一点点延迟感觉，不是很高，TPS下降幅度不会很大。</p>
+                    <p>在Linux下，读写可能会良好一点，因为Linux的IO策略不一样，可能比windows快的要多</p>
+                    <h2 id="if-ping">延迟</h2>
+                    <p>TPS,ICMP,TCP这些都是延迟罪魁祸首，当然TPS只是显示运算负载,ICMP是一个包来测试延迟，TCP传输数据</p>
+                    <p>检测测一下TPS，ping一下延迟，看一下TCP连接是否稳定</p>
+                    <p>当你加入一些插件，MOD建议玩家多时测一下TPS，看看问题出在哪里。</p>
+                    <p>Ping时最少Ping 100次，查看100次中的状态，服务器尽量选择延迟适合您也适合广大玩家的地区</p>
+                    <p>比如华南就适合这些地区:广东 广西 云南 贵州 湖南 江西 福建 香港 浙江 这些延迟都不是很高的</p>
+                    <p>华北: 北京 内蒙古 天津 辽宁 吉林 黑龙江 山西 河北 山东 宁夏</p>
+                    <p>华东: 上海 浙江 江苏 安徽 江西 福建 山东 湖北 河南</p>
+                    <p>华西: 重庆 四川 甘肃 青岛 西藏 新疆</p>
+                    <p>这些是我挑选广东，北京，上海，成都这些服务器范围延迟比较低的服务器，还是您的个人建议</p>
+                    <p>有些人不懂Mbps与MB区分，1Mbps = 128Kbps, 计算方法 (宽带 / 8), 1MB = 1000KB，而 1MIB = 1024 KIB</p>
+                    <p>当然开服宽带建议大一点，不然带不动很多人，导致卡。</p>
+                </div>
+                <div class="Text-wiki-list">
+                    <h1>7.Buserpi的一些建议</h1>
+                    <p>1.当你选择更好的服务器，你应该考虑你现在服的人数与更加高的配置性能</p>
+                    <p>2.服务器宽带至少需要大点的宽带，否则无法满足用户</p>
+                    <p>3.尽量先问问客服服务器是什么CPU，节点在哪里，宽带是什么骨干</p>
+                    <p>4.我们更多是为了您想，我们这个建议是让你学习Linux，来方便今后使用Linux开服来带来的更好性能</p>
+                    <p>5.尽量考虑开服前的宣传，人手，技术，缺乏，优点，损失，收益。</p>
+                    <p>6.大幅度预测损失，收益，不要盲目为了钱</p>
+                    <p>7.每个任务都有好的分配，技术干什么，宣传干什么，建筑干什么的</p>
+                    <p>8.给自己服务器画一个表，让自己慢慢划掉服务器运行的时间，这样更加有意义</p>
+                    <p>9.尽量不要做一些违法的事情，你的玩家在违法你也要阻止，这会影响你的名誉和你的服务器</p>
+                    <p>10.在被诽谤时冷静下来，以最好的证据来打击这些人，你可能会收获更棒的名誉</p>
+                    <p>11.建议限制未成年充值余额，最好未满16充值不得超过>300元</p>
+                </div>
+                <div class="Text-wiki-list">
+                    <h1>8.Buserpi是如何管理的</h1>
+                    <p>1.分配好每一个管理的团员，组</p>
+                    <p>2.提前预测我们的情况,比如股票，服务器攻击，服务器人数下跌</p>
+                    <p>3.针对未成年不授予强迫要求</p>
+                    <p>4.Buserpi CEO没满16，我们就觉得可以做一个部分非盈利组织</p>
+                    <p>5.合理的分配任务给熟悉的人做</p>
+                    <p>6.当成员赞助超过200元，我，管理者是无权收取您的赞助</p>
+                    <p>7.不允许做违法的事情</p>
+                    <p>8.对文件分类重要文件分类，方便大家阅读</p>
+                    <p>9.内部争执，内部进行禁言，移除，给予1-3冷静期</p>
+                    <p>10.泛滥权限，比如Buserpi机房权限，管理权限，网站权限等等，一旦发现马上追究法律</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
